@@ -43,11 +43,17 @@ Certification with audit trail
 Management-level progress reporting
 
 4. Measurable Business Impact
-Metric	Before	After
-Time-to-productivity	            7 days	4 hours
-Training administration cost	    High	Near-zero
-Certification traceability	        None	100%
-Knowledge leakage risk	            High	Low
+
+Metric	                            Before	  After
+
+Time-to-productivity	              7 days	  4 hours
+
+Training administration cost	      High	    Near-zero
+
+Certification traceability	        None	    100%
+
+Knowledge leakage risk	            High	    Low
+
 5. Functional Capabilities
 
 Role-based access control
