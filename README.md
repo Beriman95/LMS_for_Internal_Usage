@@ -64,9 +64,5 @@ To run this project locally:
 -   **RBAC (Role-Based Access Control)**: Middleware checks for `admin` / `trainer` privileges on sensitive routes.
 -   **Input Validation**: Strict validation on exam submissions and content edits.
 
-## 📸 Screenshots
-
-*(Add screenshots of the Dashboard and Exam interface here)*
-
 ---
 *This project is a sanitized export for portfolio purposes and does not contain proprietary company data.*
