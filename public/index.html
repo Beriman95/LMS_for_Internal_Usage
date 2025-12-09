@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechOps Academy – Training Portal</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Orbitron:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --rh-lightest: #eadff7;
+            --rh-light: #ad83d4;
+            --rh-purple: #471d6e;
+            --rh-pink: #c31e73;
+            --rh-dark: #2a1b3d;
+            --text-dark: #2c3e50;
+            --text-light: #ffffff;
+            --success: #27ae60;
+            --font-main: 'Roboto', sans-serif;
+            --font-tech: 'Orbitron', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: linear-gradient(135deg, var(--rh-lightest) 0%, #ffffff 50%, var(--rh-lightest) 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(var(--rh-light) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .logo-text {
+            font-family: var(--font-tech);
+            font-size: 2rem;
+            letter-spacing: 3px;
+            color: var(--rh-purple);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--rh-light);
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .track-selection {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        @media (max-width: 700px) {
+            .track-selection {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .track-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            box-shadow: 0 10px 40px rgba(71, 29, 110, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .track-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--rh-purple), var(--rh-pink));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .track-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--rh-purple);
+            box-shadow: 0 20px 50px rgba(71, 29, 110, 0.2);
+        }
+
+        .track-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .track-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--text-light);
+            background: linear-gradient(135deg, var(--rh-purple), var(--rh-pink));
+            box-shadow: 0 8px 25px rgba(195, 30, 115, 0.3);
+            transition: transform 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .track-card:hover .track-icon {
+            transform: scale(1.1);
+        }
+
+        .track-card:nth-child(2) .track-icon {
+            animation-delay: 0.3s;
+        }
+
+        .track-badge {
+            display: inline-block;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-family: var(--font-tech);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            background: var(--rh-lightest);
+            color: var(--rh-purple);
+            border: 2px solid var(--rh-purple);
+        }
+
+        .track-title {
+            font-family: var(--font-tech);
+            font-size: 1.3rem;
+            color: var(--rh-purple);
+            margin-bottom: 8px;
+        }
+
+        .track-subtitle {
+            font-size: 1rem;
+            color: var(--rh-pink);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .track-description {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .track-topics {
+            text-align: left;
+            margin: 20px 0;
+            padding: 16px;
+            background: var(--rh-lightest);
+            border-radius: 12px;
+            border-left: 4px solid var(--rh-pink);
+        }
+
+        .track-topics-title {
+            font-size: 0.75rem;
+            color: var(--rh-purple);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .track-topics ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+
+        .track-topics li {
+            font-size: 0.8rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .track-topics li i {
+            color: var(--rh-pink);
+            font-size: 0.65rem;
+        }
+
+        .track-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding-top: 16px;
+            border-top: 1px solid var(--rh-lightest);
+            margin-bottom: 20px;
+        }
+
+        .track-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: var(--rh-light);
+            font-weight: 500;
+        }
+
+        .track-meta-item i {
+            color: var(--rh-purple);
+        }
+
+        .start-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--rh-purple), var(--rh-pink));
+            color: var(--text-light);
+            padding: 14px 32px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(195, 30, 115, 0.3);
+        }
+
+        .start-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 30px rgba(195, 30, 115, 0.5);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .footer-text {
+            font-size: 0.85rem;
+            color: var(--rh-light);
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(42, 27, 61, 0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .loading-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            border-top-color: var(--rh-pink);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-text {
+            font-family: var(--font-tech);
+            color: var(--text-light);
+            font-size: 1rem;
+            letter-spacing: 2px;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text" id="loadingText">BETÖLTÉS...</div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="logo-container">
+                <i class="fas fa-server fa-2x" style="color:var(--rh-purple);"></i>
+                <span class="logo-text">TECHOPS ACADEMY</span>
+            </div>
+            <p class="subtitle">Válaszd ki a képzési útvonalat</p>
+        </header>
+
+        <div class="track-selection">
+            <!-- L1 Support Track -->
+            <div class="track-card" onclick="selectTrack('L1')">
+                <div class="track-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <span class="track-badge">L1 SUPPORT</span>
+                <h2 class="track-title">Ügyfélszolgálat</h2>
+                <p class="track-subtitle">Full Stack Kiképzés</p>
+                <p class="track-description">
+                    Domain regisztráció, DNS kezelés, email szolgáltatások, webhosting és VPS alapok.
+                    Mindaz, ami egy L1-es support munkatársnak kell.
+                </p>
+
+                <div class="track-topics">
+                    <div class="track-topics-title">Témakörök</div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Azonosítás & biztonság</li>
+                        <li><i class="fas fa-check"></i> .HU domain szabályok</li>
+                        <li><i class="fas fa-check"></i> Nemzetközi domainek</li>
+                        <li><i class="fas fa-check"></i> DNS működés</li>
+                        <li><i class="fas fa-check"></i> Email protokollok</li>
+                        <li><i class="fas fa-check"></i> Webhosting & WordPress</li>
+                    </ul>
+                </div>
+
+                <div class="track-meta">
+                    <div class="track-meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>3-4 óra</span>
+                    </div>
+                    <div class="track-meta-item">
+                        <i class="fas fa-book"></i>
+                        <span>12 modul</span>
+                    </div>
+                    <div class="track-meta-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Vizsga</span>
+                    </div>
+                </div>
+
+                <button class="start-btn">
+                    <i class="fas fa-play"></i>
+                    Képzés indítása
+                </button>
+            </div>
+
+            <!-- L2 Linux Track -->
+            <div class="track-card" onclick="selectTrack('L2')">
+                <div class="track-icon">
+                    <i class="fab fa-linux"></i>
+                </div>
+                <span class="track-badge">L2 LINUX</span>
+                <h2 class="track-title">Linux Basics</h2>
+                <p class="track-subtitle">Rendszeradminisztráció</p>
+                <p class="track-description">
+                    Linux fájlrendszer, jogosultságok, szolgáltatáskezelés, SSH, hálózat és bash scripting.
+                    Az L2-es szintű technikai támogatás alapjai.
+                </p>
+
+                <div class="track-topics">
+                    <div class="track-topics-title">Témakörök</div>
+                    <ul>
+                        <li><i class="fas fa-check"></i> System Fundamentals</li>
+                        <li><i class="fas fa-check"></i> Users & Permissions</li>
+                        <li><i class="fas fa-check"></i> Service Management</li>
+                        <li><i class="fas fa-check"></i> SSH & Remote Access</li>
+                        <li><i class="fas fa-check"></i> Networking</li>
+                        <li><i class="fas fa-check"></i> Bash Scripting</li>
+                    </ul>
+                </div>
+
+                <div class="track-meta">
+                    <div class="track-meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>4-5 óra</span>
+                    </div>
+                    <div class="track-meta-item">
+                        <i class="fas fa-book"></i>
+                        <span>8 modul</span>
+                    </div>
+                    <div class="track-meta-item">
+                        <i class="fas fa-terminal"></i>
+                        <span>Vizsga</span>
+                    </div>
+                </div>
+
+                <button class="start-btn">
+                    <i class="fas fa-rocket"></i>
+                    Képzés indítása
+                </button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p class="footer-text">© 2025 TechOps Academy – All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // URL Configuration
+        // Both tracks use the same app shell (l1.html)
+        // The content is dynamically loaded based on localStorage 'rh_track'
+
+        function showLoading(message) {
+            const overlay = document.getElementById('loadingOverlay');
+            const text = document.getElementById('loadingText');
+            if (text) text.textContent = message || 'BETÖLTÉS...';
+            if (overlay) overlay.classList.add('active');
+        }
+
+        function hideLoading() {
+            const overlay = document.getElementById('loadingOverlay');
+            if (overlay) overlay.classList.remove('active');
+        }
+
+        function selectTrack(track) {
+            showLoading('KÉPZÉS BETÖLTÉSE...');
+
+            // Store selected track for logic.js
+            localStorage.setItem('rh_track', track);
+            localStorage.setItem('rh_track_selected_at', new Date().toISOString());
+
+            // Navigate immediately to the main app shell
+            setTimeout(() => {
+                window.location.href = 'l1.html';
+            }, 800);
+        }
+
+        // On page load - check for returning user
+        document.addEventListener('DOMContentLoaded', function () {
+            const lastTrack = localStorage.getItem('rh_selected_track');
+            const lastToken = localStorage.getItem('rh_token');
+            if (lastTrack && lastToken) {
+                console.log('Returning user, last track:', lastTrack);
+            }
+        });
+    </script>
+
+</body>
+
+</html>
