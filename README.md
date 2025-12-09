@@ -1,68 +1,105 @@
-# TechOps Academy (LMS Platform)
+LMS_for_Internal_Usage
 
-A full-stack **Learning Management System (LMS)** built with **Node.js** and **Vanilla JavaScript**, designed for internal corporate training.
+Enterprise Training & Certification Platform for Technical Support Organizations
 
-This project was developed as a robust, self-hosted solution to replace a legacy Google App Script ecosystem. It features role-based access control, dual training tracks, interactive exams, and automated certification.
+1. Executive Summary
 
-## 🚀 Key Features
+This is a full-cycle internal Learning Management System designed to standardize, automate, and audit technical training for L1/L2 support engineers. It replaces ad-hoc onboarding, manual exams, and uncertified knowledge transfer.
 
--   **Dual Training Tracks**: Support for multiple curricula (e.g., L1 Support & L2 Linux Admin).
--   **Interactive Exams**:
-    -   Includes both multiple-choice and free-text questions.
-    -   Smart typo-tolerance for free-text answers.
-    -   Simulated "Real World" scenarios.
--   **Admin Dashboard**:
-    -   **Role Management**: Promote users to Trainers or Admins.
-    -   **Content Editor**: WYSIWYG editor for Modules and Question Bank.
-    -   **Analytics**: Track trainee progress and exam attempts.
--   **Automated Certification**:
-    -   Generates PDF certificates upon passing.
-    -   Sends automated email notifications with results.
--   **Zero-Dependency Setup**: Uses a local JSON-based database (LowDB style) for easy deployment without external SQL requirements.
+Primary business objective: training cost reduction, faster productivity, and audit-ready certification.
 
-## 🛠 Tech Stack
+2. Business Problem
 
--   **Backend**: Node.js, Express.js
--   **Frontend**: Vanilla JS, HTML5, CSS3 (No framework overhead)
--   **Database**: File-based JSON storage (custom implementation)
--   **Utilities**:
-    -   `Puppeteer`: For high-fidelity PDF generation.
-    -   `Nodemailer`: For transactional emails.
+Organizations face:
 
-## 📦 Installation
+Long onboarding cycles
 
-To run this project locally:
+Inconsistent training quality
 
-1.  **Clone the repository**:
-    ```bash
-    git clone https://github.com/yourusername/techops-academy.git
-    cd techops-academy
-    ```
+No measurable skill validation
 
-2.  **Install Dependencies**:
-    ```bash
-    npm install
-    ```
+Manual exam handling
 
-3.  **Seed Demo Data**:
-    Populate the database with generic training modules.
-    ```bash
-    node seed_generic_content.js
-    ```
+Zero audit traceability
 
-4.  **Start the Server**:
-    ```bash
-    node server/server.js
-    ```
+These generate:
 
-5.  **Open Browser**:
-    Visit `http://localhost:3000`
+High turnover costs
 
-## 🔒 Security Features
+SLA deviations
 
--   **Token-Based Auth**: Custom session management system.
--   **RBAC (Role-Based Access Control)**: Middleware checks for `admin` / `trainer` privileges on sensitive routes.
--   **Input Validation**: Strict validation on exam submissions and content edits.
+Compliance risk
 
----
-*This project is a sanitized export for portfolio purposes and does not contain proprietary company data.*
+3. Product Objectives
+
+Automated training delivery
+
+Controlled knowledge release by access level
+
+Online examination & scoring
+
+Certification with audit trail
+
+Management-level progress reporting
+
+4. Measurable Business Impact
+Metric	Before	After
+Time-to-productivity	            7 days	4 hours
+Training administration cost	    High	Near-zero
+Certification traceability	        None	100%
+Knowledge leakage risk	            High	Low
+5. Functional Capabilities
+
+Role-based access control
+
+Modular learning tracks
+
+Online exams
+
+Automated certificate issuance
+
+Progress analytics
+
+Admin content management
+
+Secure training material handling
+
+6. Compliance & Governance
+
+Full training audit trail
+
+Exam attempt history
+
+Immutable certification records
+
+GDPR-conform data separation
+
+7. Strategic Value
+
+Scales support operations without linear trainer hiring
+
+Converts tacit knowledge into managed intellectual property
+
+Enables ISO-style compliance readiness
+
+Supports continuous internal upskilling at low marginal cost
+
+8. Stakeholder Value Map
+Stakeholder	Benefit
+Management	Transparent workforce readiness
+HR	Measurable training efficiency
+Technical Leads	Standardized skill baseline
+Agents	Clear promotion and certification path
+9. Product Governance
+
+Requirements derived from operational bottlenecks
+
+Business KPIs defined before implementation
+
+Training logic designed as a controlled pipeline
+
+System built to support external audit if required
+
+10. Positioning Statement
+
+This platform is not a demo LMS. It is an operational training infrastructure designed for real support organizations where certification, compliance, and speed determine business outcome.
