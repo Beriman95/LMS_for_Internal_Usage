@@ -1,111 +1,125 @@
-LMS_for_Internal_Usage
+# Enterprise Training & Certification Platform
+**LMS for Internal Technical Support Organizations**
 
-Enterprise Training & Certification Platform for Technical Support Organizations
+## 1. Executive Summary
+This is a full-cycle internal Learning Management System (LMS) designed to standardize, automate, and audit technical training for L1/L2 support engineers. It replaces ad-hoc onboarding, manual exams, and uncertified knowledge transfer.
 
-1. Executive Summary
+**Primary Business Objective:** Training cost reduction, faster productivity, and audit-ready certification.
 
-This is a full-cycle internal Learning Management System designed to standardize, automate, and audit technical training for L1/L2 support engineers. It replaces ad-hoc onboarding, manual exams, and uncertified knowledge transfer.
-
-Primary business objective: training cost reduction, faster productivity, and audit-ready certification.
-
-2. Business Problem
-
+## 2. Business Problem
 Organizations face:
+*   **Long onboarding cycles**: New hires take too long to become productive.
+*   **Inconsistent training quality**: Knowledge transfer depends on who is available to teach.
+*   **No measurable skill validation**: Managers cannot quantify team readiness.
+*   **Manual exam handling**: Grading and administering tests consumes senior staff time.
+*   **Zero audit traceability**: No proof of competency for compliance or disputes.
 
-Long onboarding cycles
+**These generate:**
+*   High turnover costs
+*   SLA deviations
+*   Compliance risk
 
-Inconsistent training quality
+## 3. Product Objectives
+*   **Automated training delivery**: Self-paced modules reduce dependency on senior staff.
+*   **Controlled knowledge release**: Content access is governed by access level (L1 vs L2).
+*   **Online examination & automated scoring**: Instant feedback and zero grading time.
+*   **Certification with audit trail**: Immutable records of who passed what and when.
+*   **Management-level reporting**: Dashboards for real-time workforce readiness visibility.
 
-No measurable skill validation
+## 4. Measurable Business Impact
 
-Manual exam handling
+| Metric | Before | After |
+| :--- | :--- | :--- |
+| **Time-to-productivity** | 7 days | **4 hours** |
+| **Training admin cost** | High (Senior staff time) | **Near-zero** (Automated) |
+| **Certification traceability** | None | **100%** |
+| **Knowledge leakage risk** | High | **Low** |
 
-Zero audit traceability
+## 5. Functional Capabilities
+*   **Role-Based Access Control (RBAC)**: Admin, Trainer, and Trainee roles with strict permission scopes.
+*   **Modular Learning Tracks**: Support for multiple curricula (e.g., L1 Support, L2 Linux).
+*   **Online Exams**: Interactive testing with Multiple Choice and Free Text questions (including typo-tolerance).
+*   **Automated Certificate Issuance**: PDF diplomas generated and emailed automatically upon passing.
+*   **Progress Analytics**: Real-time tracking of module completion and exam attempts.
+*   **Admin Content Management**: WYSIWYG editor for instant course updates without code changes.
+*   **Secure Content Handling**: Protected routes ensure training assets are only accessible to authorized personnel.
 
-These generate:
+## 6. Compliance & Governance
+*   **Full training audit trail**: Every click, module completion, and exam attempt is logged.
+*   **Exam attempt history**: Retains detailed records of every answer submitted.
+*   **Immutable certification records**: Certificates serve as proof of competency at a specific point in time.
+*   **GDPR-conform functionality**: Data separation and user management features.
 
-High turnover costs
+## 7. Strategic Value
+*   **Scales support operations**: Add 50 new agents without needing 50 new trainers.
+*   **Managed Intellectual Property**: Converts "tribal knowledge" into a documented, managed asset.
+*   **Compliance Readiness**: Enables ISO-style compliance by proving staff competency.
+*   **Continuous Upskilling**: Facilitates internal promotion (L1 -> L2) at low marginal cost.
 
-SLA deviations
+## 8. Stakeholder Value Map
 
-Compliance risk
+| Stakeholder | Benefit |
+| :--- | :--- |
+| **Management** | Transparent workforce readiness and reduced churn costs. |
+| **HR** | Measurable training efficiency and automated certification. |
+| **Technical Leads** | Standardized skill baseline across the team. |
+| **Agents** | Clear, self-paced promotion and certification path. |
 
-3. Product Objectives
+## 9. Product Governance
+*   **Requirements**: Derived directly from operational bottlenecks (e.g., high ticket escalation rates).
+*   **KPIs**: Business success defined by reduction in onboarding time and admin overhead.
+*   **Logic**: Training designed as a strict, controlled pipeline (Module -> Quiz -> Exam -> Cert).
+*   **Auditability**: System architecture supports external audit requirements.
 
-Automated training delivery
+## 10. Positioning Statement
+This platform is not a demo LMS. It is an **operational training infrastructure** designed for real support organizations where certification, compliance, and speed determine business outcome.
 
-Controlled knowledge release by access level
+---
 
-Online examination & scoring
+# Technical Appendix
+*(For Technical Recruiters & Engineering Leads)*
 
-Certification with audit trail
+## 🛠 Tech Stack
+*   **Backend**: Node.js, Express.js (REST-like API)
+*   **Frontend**: Vanilla JavaScript (ES6+), HTML5, CSS3
+*   **Database**: File-based LowDB-style JSON storage (Optimized for zero-maintenance deployment)
+*   **Services**:
+    *   **Puppeteer**: High-fidelity PDF generation for certificates.
+    *   **Nodemailer**: Transactional email service for results.
 
-Management-level progress reporting
+## 📦 Installation & Setup
 
-4. Measurable Business Impact
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/yourusername/lms-internal-platform.git
+    cd lms-internal-platform
+    ```
 
-Metric	                            Before	  After
+2.  **Install Dependencies**:
+    ```bash
+    npm install
+    ```
 
-Time-to-productivity	              7 days	  4 hours
+3.  **Seed Demo Data**:
+    Initialize the database with generic "TechOps" sample content.
+    ```bash
+    node seed_generic_content.js
+    ```
 
-Training administration cost	      High	    Near-zero
+4.  **Start the Server**:
+    ```bash
+    node server/server.js
+    ```
 
-Certification traceability	        None	    100%
+5.  **Access the Platform**:
+    *   URL: `http://localhost:3000`
+    *   **Demo Login**: No login required for initial demo registration.
+    *   **Admin Access**: See `db.json` after seeding for admin credentials.
 
-Knowledge leakage risk	            High	    Low
+## 🔒 Security Implementation
+*   **Session Management**: Custom token-based header authentication.
+*   **Middleware**: Rigid `minRole()` middleware protects all Admin/API routes.
+*   **Sanitization**: Input validation preventing basic injection attacks.
 
-5. Functional Capabilities
-
-Role-based access control
-
-Modular learning tracks
-
-Online exams
-
-Automated certificate issuance
-
-Progress analytics
-
-Admin content management
-
-Secure training material handling
-
-6. Compliance & Governance
-
-Full training audit trail
-
-Exam attempt history
-
-Immutable certification records
-
-GDPR-conform data separation
-
-7. Strategic Value
-
-Scales support operations without linear trainer hiring
-
-Converts tacit knowledge into managed intellectual property
-
-Enables ISO-style compliance readiness
-
-Supports continuous internal upskilling at low marginal cost
-
-8. Stakeholder Value Map
-Stakeholder	Benefit
-Management	Transparent workforce readiness
-HR	Measurable training efficiency
-Technical Leads	Standardized skill baseline
-Agents	Clear promotion and certification path
-9. Product Governance
-
-Requirements derived from operational bottlenecks
-
-Business KPIs defined before implementation
-
-Training logic designed as a controlled pipeline
-
-System built to support external audit if required
-
-10. Positioning Statement
-
-This platform is not a demo LMS. It is an operational training infrastructure designed for real support organizations where certification, compliance, and speed determine business outcome.
+---
+*This repository contains a sanitized, portfolio-safe version of the production system used by Rackhost Kft.*
